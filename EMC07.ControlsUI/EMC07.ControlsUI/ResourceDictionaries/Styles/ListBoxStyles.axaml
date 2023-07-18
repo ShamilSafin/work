@@ -1,0 +1,85 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	<Style x:Key="EmcListBoxBase" TargetType="ListBox">
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+
+
+	<Style x:Key="EmcListBoxBase2" TargetType="ListBox">
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ListBox}">
+					<Border SnapsToDevicePixels="True"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}"
+                            Padding="{TemplateBinding Padding}">
+						<ScrollViewer Focusable="False">
+							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+						</ScrollViewer>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcListBoxItemBase" TargetType="ListBoxItem">
+		<Setter Property="OverridesDefaultStyle" Value="False"/>
+
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="BorderThickness" Value="0"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBoxItem">
+					<Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+					        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            SnapsToDevicePixels="True">
+						<ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcNonSelectableListBoxItem" BasedOn="{StaticResource EmcListBoxItemBase}"  TargetType="{x:Type ListBoxItem}">
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="BorderBrush" Value="Transparent"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+
+	<Style x:Key="EmcSelectableListBoxItem" BasedOn="{StaticResource EmcListBoxItemBase}"  TargetType="{x:Type ListBoxItem}">
+		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="Background" Value="{DynamicResource EmcSelectedColor}"/>
+				<Setter Property="BorderBrush" Value="{DynamicResource EmcSelectedColor}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+</Styles>

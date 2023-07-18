@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMC07.ControlsUI", "EMC07.ControlsUI\EMC07.ControlsUI.csproj", "{FA28924A-8CF6-4062-AB34-4A66AB8C3881}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMC07.ControlsUI.Desktop", "EMC07.ControlsUI.Desktop\EMC07.ControlsUI.Desktop.csproj", "{5E2501E9-FF7D-4BE3-8F31-26AA0A4C1D49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA28924A-8CF6-4062-AB34-4A66AB8C3881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA28924A-8CF6-4062-AB34-4A66AB8C3881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA28924A-8CF6-4062-AB34-4A66AB8C3881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA28924A-8CF6-4062-AB34-4A66AB8C3881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E2501E9-FF7D-4BE3-8F31-26AA0A4C1D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2501E9-FF7D-4BE3-8F31-26AA0A4C1D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E2501E9-FF7D-4BE3-8F31-26AA0A4C1D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E2501E9-FF7D-4BE3-8F31-26AA0A4C1D49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2D0DCCE-B89E-484D-958D-8332CA71A726}
+	EndGlobalSection
+EndGlobal

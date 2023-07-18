@@ -1,0 +1,509 @@
+<Window x:Class="EMC07.ControlsUI.NumpadTouchScreen"
+        xmlns:avalonia="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:EMC07.ControlsUI"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Width="{StaticResource EmcMainWindowWidth}"
+        AllowsTransparency="True"
+        Background="#00000000">
+
+	<Window.Resources>
+		<src:ClassChangeNumpad x:Key="ChangeKeyboard" />
+
+		<SolidColorBrush x:Key="ColorFixKey" Color="Blue" />
+		<SolidColorBrush x:Key="ColorKey" Color="#FF5C5C5C" />
+
+
+		<SolidColorBrush x:Key="Flat_ButtonColor" Color="#FF474747" />
+		<SolidColorBrush x:Key="Flat_BackgroundColor" Color="#FF282828" />
+		<SolidColorBrush x:Key="Flat_BorderColor" Color="#FF484848" />
+		<SolidColorBrush x:Key="Flat_ButtonColorSelected" Color="#FF076898" />
+		<SolidColorBrush x:Key="Flat_BackgroundFieldName" Color="#FF000E1A" />
+		<SolidColorBrush x:Key="Flat_BackgroundFieldValue" Color="#FFFFFFFF" />
+
+		<SolidColorBrush x:Key="Flat_BackgroundBackspace" Color="#FFCCCFD1" />
+		<SolidColorBrush x:Key="Flat_ForegroundFieldName" Color="#FFFFFFFF" />
+		<SolidColorBrush x:Key="Flat_ForegroundFieldValue" Color="#FF000000" />
+
+		<Style x:Key="NormalKey" TargetType="Button">
+			<Setter Property="Background" Value="{StaticResource ColorKey}" />
+			<Setter Property="FontSize" Value="25" />
+			<Setter Property="Foreground" Value="#FFFFFFFF" />
+			<Setter Property="Margin" Value="2" />
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Rectangle x:Name="GelBackground" Fill="{TemplateBinding Background}" />
+							<ContentPresenter x:Name="GelButtonContent"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+						</Grid>
+
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsPointerOver" Value="true">
+								<Setter Property="Background" Value="{StaticResource Flat_ButtonColor}" />
+							</Trigger>
+
+							<Trigger Property="IsPressed" Value="true">
+								<Setter Property="Background" Value="{StaticResource Flat_ButtonColorSelected}" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="BackSpaceKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="Width" Value="54" />
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="Margin" Value="0" />
+
+			<!--Исправить       -->
+			<Setter Property="PointerPressed">
+				<Setter.Value>
+					<Command Command="{Binding MouseLeftButtonDown}" />
+				</Setter.Value>
+			</Setter>	
+			<EventSetter Event="PointerReleased" Handler="MouseLeftButtonUp" />
+
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Vertical">
+							<Canvas Width="35" Height="30">
+								<Polygon Fill="{StaticResource Flat_BackgroundBackspace}"
+                                         Points="0 15, 7 7, 35 7, 35 23, 7 23"
+                                         Stroke="{StaticResource Flat_BackgroundBackspace}"
+                                         StrokeThickness="1.5" />
+								<Line Stroke="{StaticResource Flat_ButtonColor}"
+                                      StrokeThickness="2"
+                                      X1="17.5"
+                                      X2="27.5"
+                                      Y1="10"
+                                      Y2="20" />
+								<Line Stroke="{StaticResource Flat_ButtonColor}"
+                                      StrokeThickness="2"
+                                      X1="27.5"
+                                      X2="17.5"
+                                      Y1="10"
+                                      Y2="20" />
+							</Canvas>
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="ClearKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="Width" Value="108" />
+			<Setter Property="FontSize" Value="15" />
+
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Vertical">
+							<TextBlock Margin="10,0,0,0" VerticalAlignment="Center">Clear</TextBlock>
+							<!--
+                                <Canvas Width="90" Height="14">
+                                <Polygon Points="0 7, 7 3, 7 6, 90 6, 90 8, 7 8, 7 11" Stroke="White" StrokeThickness="1.5" Fill="White"/>
+                                </Canvas>
+                            -->
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+
+		<Style x:Key="PlusMinusKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="Height" Value="50" />
+			<Setter Property="Width" Value="90" />
+			<Setter Property="Content" Value="Backspace" />
+			<Setter Property="FontSize" Value="30" />
+		</Style>
+
+		<Style x:Key="MoveCursorLeftKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="Content" Value="Backspace" />
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<Canvas Width="30" Height="30">
+								<Polygon Fill="Transparent"
+                                         Points="0 15, 15 0, 15 7, 30 7, 30 23, 15 23, 15 30"
+                                         Stroke="White"
+                                         StrokeThickness="1.5" />
+							</Canvas>
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="MoveCursorRightKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<Canvas Width="30" Height="30">
+								<Polygon Fill="Transparent"
+                                         Points="30 15, 15 30, 15 23, 0 23, 0 7, 15 7, 15 0"
+                                         Stroke="White"
+                                         StrokeThickness="1.5" />
+							</Canvas>
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="EnterKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Margin="0,0,0,4" VerticalAlignment="Center">Enter</TextBlock>
+							<Canvas Width="30" Height="30">
+								<Polygon Fill="White"
+                                             Points="0 26, 4 22, 4 25,28 25, 28 5, 30 5, 30 27, 4 27,4 30"
+                                             Stroke="White"
+                                             StrokeThickness="1.5" />
+							</Canvas>
+						</StackPanel>
+
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="CloseKey"
+               BasedOn="{StaticResource NormalKey}"
+               TargetType="Button">
+			<Setter Property="Background" Value="{StaticResource Flat_BackgroundColor}" />
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<Canvas Width="20" Height="20">
+							<Polygon Fill="Transparent"
+                                         Points="1 0, 10 9, 19 0, 20 1, 11 10, 20 19, 19 20, 10 11, 1 20, 0 19, 9 10, 0 1"
+                                         Stroke="White"
+                                         StrokeThickness="2.5" />
+						</Canvas>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<!--  <Setter Property="Background" Value="#FF282828"/>  -->
+					<Setter Property="Background" Value="{StaticResource Flat_BackgroundColor}" />
+				</Trigger>
+
+				<Trigger Property="IsPressed" Value="True">
+					<!--  <Setter Property="Background" Value="#FF076898"/>  -->
+					<Setter Property="Background" Value="{StaticResource Flat_ButtonColorSelected}" />
+				</Trigger>
+
+			</Style.Triggers>
+		</Style>
+
+		<Style x:Key="TextBoxValue" TargetType="TextBox">
+			<Setter Property="Height" Value="40" />
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="FontSize" Value="24" />
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Rectangle RadiusX="9"
+                                       RadiusY="9"
+                                       Stroke="Black"
+                                       StrokeThickness="1.5">
+								<Rectangle.Fill>
+									<SolidColorBrush Color="#FFB4E2EA" />
+								</Rectangle.Fill>
+							</Rectangle>
+
+							<ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalScrollBarVisibility="Hidden" />
+
+
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+
+	</Window.Resources>
+
+	<Grid Name="gridContent" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Background="Black"
+                Opacity="0.4" />
+
+		<Grid Grid.Row="1"
+              Grid.Column="1"
+              Background="{StaticResource Flat_BackgroundColor}"
+              DataContext="{StaticResource ChangeKeyboard}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Grid Name="HeaderPlace" Grid.Row="0" Margin="0,0,0,5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<Border Grid.Column="0"
+                            BorderBrush="{StaticResource Flat_BorderColor}"
+                            BorderThickness="0, 0, 1, 1">
+
+						<TextBlock Margin="10,0,10,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontSize="16"
+                                       Foreground="{StaticResource Flat_ForegroundFieldName}"
+                                       Text="{Binding Caption}" />
+
+					</Border>
+
+					<Border Grid.Column="1"
+                            BorderBrush="{StaticResource Flat_BorderColor}"
+                            BorderThickness="0, 0, 0, 1"
+                            Height="55" Width="55">
+
+						<Button Name="btnClose" Style="{StaticResource CloseKey}" Command="src:NumpadTouchScreen.CmdClose"/>
+					</Border>
+				</Grid>
+
+				<Grid Grid.Row="1" Margin="3">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="285" />
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Row="2"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Vertical">
+						<Grid Margin="5">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<Grid Grid.Row="0" Margin="0" Height="55">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<Border Grid.Column="0" BorderThickness="0">
+									<TextBox Name="TextBoxInternal"
+                                                 Width="215"
+                                                 VerticalContentAlignment="Center"
+                                                 Background="{StaticResource Flat_BackgroundFieldValue}"
+                                                 FontSize="25"
+                                                 Foreground="{StaticResource Flat_ForegroundFieldValue}" />
+								</Border>
+
+								<Button Grid.Column="1"
+                                            Width="58"
+                                            Margin="0,0,3,0"
+                                            Command="src:NumpadTouchScreen.CmdBackspace"
+                                            Style="{StaticResource BackSpaceKey}" />
+							</Grid>
+
+							<StackPanel Grid.Row="2"
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Right"
+                                            Orientation="Vertical">
+
+								<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="55" />
+											<ColumnDefinition Width="55" />
+											<ColumnDefinition Width="55" />
+											<ColumnDefinition Width="55" />
+											<ColumnDefinition Width="55" />
+										</Grid.ColumnDefinitions>
+
+										<Grid.RowDefinitions>
+											<RowDefinition Height="2" />
+											<RowDefinition Height="55" />
+											<RowDefinition Height="55" />
+											<RowDefinition Height="55" />
+											<RowDefinition Height="55" />
+										</Grid.RowDefinitions>
+
+										<Button Grid.Row="1"
+                                                    Grid.Column="3"
+                                                    Command="src:NumpadTouchScreen.CmdCaretLeft"
+                                                    Style="{StaticResource MoveCursorLeftKey}" />
+										<Button Grid.Row="1"
+                                                    Grid.Column="4"
+                                                    Command="src:NumpadTouchScreen.CmdCaretRight"
+                                                    Style="{StaticResource MoveCursorRightKey}" />
+
+
+										<Button Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Command="src:NumpadTouchScreen.Cmd7"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd7}" />
+										</Button>
+										<Button Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Command="src:NumpadTouchScreen.Cmd8"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd8}" />
+										</Button>
+										<Button Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    Command="src:NumpadTouchScreen.Cmd9"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd9}" />
+										</Button>
+
+										<Button Grid.Row="2"
+                                                    Grid.Column="3"
+                                                    Command="src:NumpadTouchScreen.CmdPlus"
+                                                Visibility="{Binding PlusKeyVisibility}"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_CmdPlus}" />
+										</Button>
+
+										<Button Grid.Row="2"
+                                                    Grid.Column="4"
+                                                    Command="src:NumpadTouchScreen.CmdMinus"
+                                                Visibility="{Binding MinusKeyVisibility}"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_CmdMinus}" />
+										</Button>
+
+										<Button Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Command="src:NumpadTouchScreen.Cmd4"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd4}" />
+										</Button>
+										<Button Grid.Row="2"
+                                                    Grid.Column="1"
+                                                    Command="src:NumpadTouchScreen.Cmd5"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd5}" />
+										</Button>
+										<Button Grid.Row="2"
+                                                    Grid.Column="2"
+                                                    Command="src:NumpadTouchScreen.Cmd6"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd6}" />
+										</Button>
+
+										<Button Grid.Row="3"
+                                                    Grid.Column="0"
+                                                    Command="src:NumpadTouchScreen.Cmd1"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd1}" />
+										</Button>
+										<Button Grid.Row="3"
+                                                    Grid.Column="1"
+                                                    Command="src:NumpadTouchScreen.Cmd2"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd2}" />
+										</Button>
+										<Button Grid.Row="3"
+                                                    Grid.Column="2"
+                                                    Command="src:NumpadTouchScreen.Cmd3"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd3}" />
+										</Button>
+
+										<Border Grid.Row="{Binding BtnEnterRow}"
+                                        Grid.RowSpan="{Binding BtnEnterRowSpan}"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="2"
+                                                Margin="5,0,0,0">
+											<Button Name="btnEnter"
+                                                    Command="src:NumpadTouchScreen.CmdEnter"
+                                                    Style="{StaticResource EnterKey}" />
+										</Border>
+
+										<Button Grid.Row="4"
+                                                    Grid.Column="2"
+                                                Visibility="{Binding EpsilonKeyVisibility}"
+                                                    Command="src:NumpadTouchScreen.CmdEpsilon"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_CmdEpsilon}" />
+										</Button>
+										<Button Grid.Row="4"
+                                                    Grid.Column="0"
+                                                    Command="src:NumpadTouchScreen.Cmd0"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_Cmd0}" />
+
+										</Button>
+										<Button Grid.Row="4"
+                                                    Grid.Column="1"
+                                                    Command="src:NumpadTouchScreen.CmdDecimalSeparator"
+                                                    Style="{StaticResource NormalKey}">
+											<TextBlock Text="{Binding Key_CmdDecimalSeparator}" />
+										</Button>
+
+									</Grid>
+								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>

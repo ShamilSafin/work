@@ -1,0 +1,94 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:d="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+		<!--*******************************-->
+		<!--*            Title	          *-->
+		<!--*******************************-->
+		<sys:String x:Key="Theme">Светлая</sys:String>
+		<!--Название тема-->
+
+
+		<!--*******************************-->
+		<!--*            Colors		      *-->
+		<!--*******************************-->
+		<Color              x:Key="HighlightTextBrush">#FF000000</Color>
+		<!--Цвет выделения текста в строке в листбоксе, если строка в фокусе-->
+		<Color              x:Key="HighlightBrush">Transparent</Color>
+		<!--Цвет выделения строки в листбоксе, если строка в фокусе-->
+		<Color              x:Key="SelectedColor">#FF84D2EF</Color>
+		<!--Один из главных цветов темы-->
+		<Color              x:Key="SelectedColor#2">#007ACF</Color>
+		<!--Один из главных цветов темы-->
+		<Color              x:Key="ForegroundColor">#FF000000</Color>
+		<!--Используется в ресурсах листбоксов и в словаре-->
+		<Color              x:Key="LightGrayColor">#FFDDDDDD</Color>
+		<!--Один из основных цветов темы (светло-серый), используется только в словаре-->
+		<Color              x:Key="LightGrayColor#2">#FFFAFAFA</Color>
+		<!--Один из основных цветов темы (светло-серый#2), используется только в словаре-->
+		<Color              x:Key="WhiteColor">#FFFF</Color>
+		<!--Один из основных цветов темы (белый), используется только в словаре-->
+		<Color              x:Key="GrayColor">#FF848484</Color>
+		<!--Один из основных цветов темы (серый), используется только в словаре-->
+		<Color              x:Key="GrayColor#2">#FF939393</Color>
+		<!--Один из основных цветов темы (серый), используется только в словаре-->
+		<Color              x:Key="EmcBaseMenuBackground">#FFEEEEEE</Color>
+		<!--Один из основных цветов темы (серый), используется только в словаре-->
+		<Color              x:Key="EmcBaseMenuForeground">#FF474747</Color>
+		<!--Один из основных цветов темы (серый), используется только в словаре-->
+		<Color              x:Key="BorderColor">#FF808080</Color>
+		<!--Один из основных цветов темы (серый), используется только в словаре-->
+		<Color              x:Key="GreenColor">#8AD289</Color>
+		<Color              x:Key="EnableFalseColor">#CCCCCC</Color>
+
+
+		<!--*******************************-->
+		<!--*            Brushes          *-->
+		<!--*******************************-->
+		<SolidColorBrush    x:Key="EmcBackground" Color="{StaticResource LightGrayColor#2}"/>
+		<!--Цвет фона страницы-->
+		<SolidColorBrush    x:Key="EmcTextForeground" Color="{StaticResource ForegroundColor}"/>
+		<!--Цвет текста-->
+		<SolidColorBrush    x:Key="EmcSemiTransparentBrush" Color="#BE000000"/>
+		<!--Полупрозрачный цвет, для PopUp окон-->
+		<SolidColorBrush    x:Key="EmcBackgroundTextColor" Color="#FFD2CDCD"/>
+		<!--Цвет фонового текста-->
+		<SolidColorBrush    x:Key="EmcColorBorder" Color="{StaticResource BorderColor}"/>
+		<!--Цвет бордера-->
+		<SolidColorBrush    x:Key="EmcSelectedColor" Color="{StaticResource SelectedColor}"/>
+		<!--Цвет соответствует цвету нажатой кнопки-->
+		<SolidColorBrush    x:Key="EmcSelectedColor#2" Color="{StaticResource SelectedColor#2}"/>
+		<!--Цвет соответствует цвету нажатой кнопки-->
+		<SolidColorBrush    x:Key="EmcUnselectedColor" Color="{StaticResource SelectedColor}" Opacity="0.20"/>
+		<!--Цвет соответствует цвету нажатой кнопки-->
+		<SolidColorBrush    x:Key="EmcStatusBackground" Color="{StaticResource ForegroundColor}"/>
+		<!--Цвет фона для строки информации-->
+		<SolidColorBrush    x:Key="EmcStatusForeground" Color="{StaticResource WhiteColor}"/>
+		<!--Цвет шрифта строки информации-->
+		<SolidColorBrush    x:Key="EmcToolbarBackground" Color="{StaticResource EmcBaseMenuBackground}"/>
+		<!--Цвет фона тулбара-->
+		<SolidColorBrush    x:Key="EmcToolbarForeground" Color="{StaticResource EmcBaseMenuForeground}"/>
+		<!--Цвет шрифта тулбара-->
+		<SolidColorBrush    x:Key="EmcListBorderBrush" Color="{StaticResource BorderColor}"/>
+		<!--Цвет бордера в листбоксе-->
+		<SolidColorBrush    x:Key="EmcErrorValueColor" Color="Red"/>
+		<SolidColorBrush    x:Key="EmcNormalValueColor" Color="{StaticResource ForegroundColor}"/>
+		<SolidColorBrush    x:Key="EmcEnableFalseColor" Color="{StaticResource EnableFalseColor}"/>
+
+		<!--Используются в Styles-->
+		<SolidColorBrush    x:Key="EmcButtonMenuBorderBrush" Color="{StaticResource BorderColor}"/>
+		<!--Цвет бордера кнопок в общих меню-->
+		<SolidColorBrush    x:Key="EmcButtonIconColor" Color="{StaticResource BorderColor}"/>
+		<!--Цвет иконок в кнопках-->
+		<SolidColorBrush    x:Key="EmcButtonMenuBackground" Color="{StaticResource EmcBaseMenuBackground}"/>
+		<!--Цвет фона кнопок в меню-->
+		<SolidColorBrush    x:Key="EmcButtonMenuForeground" Color="{StaticResource EmcBaseMenuForeground}"/>
+		<!--Цвет переднего плана кнопок в меню-->
+		<SolidColorBrush    x:Key="EmcInputControlColorBorder" Color="#FF3BABE3"/>
+		<!--Цвет для EmcTextBox и EmcComboBox-->
+		<SolidColorBrush    x:Key="EmcTabItemForeground" Color="{StaticResource GrayColor}"/>
+		<!--Цвет заголовка переопределенных вкладок-->
+
+	
+</ResourceDictionary>

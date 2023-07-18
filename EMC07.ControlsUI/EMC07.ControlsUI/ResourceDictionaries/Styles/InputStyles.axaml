@@ -1,0 +1,884 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+
+	<Style x:Key="EmcInputTextBoxBase" TargetType="ScrollViewer">
+		<Setter Property="Margin" Value="2,0,2,0"/>
+		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+	</Style>
+
+
+	<Style x:Key="EmcTextBox" TargetType="TextBox">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid Grid.Column="0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<Border x:Name="Border1" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" x:Name="PART_ContentHost"  Style="{StaticResource EmcInputTextBoxBase}"/>
+
+							<Grid Grid.Column="2">
+
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Border x:Name="Border2" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+						</Grid>
+
+						<Rectangle x:Name="Rectangle" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border1"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border1"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcTextBoxNew" TargetType="TextBox">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="2"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+
+							<Border x:Name="BorderL" Grid.Column="0" Grid.Row="1" BorderThickness="0,0,2,0" BorderBrush="{DynamicResource EmcInputControlColorBorder}"/>
+
+							<Border x:Name="BorderR" Grid.Column="2" Grid.Row="1" BorderThickness="2,0,0,0"  BorderBrush="{DynamicResource EmcInputControlColorBorder}"/>
+
+							<Border x:Name="BorderB" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BorderThickness="0,0,0,2"  BorderBrush="{DynamicResource EmcInputControlColorBorder}"/>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  x:Name="PART_ContentHost"  Style="{StaticResource EmcInputTextBoxBase}"/>
+						</Grid>
+
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="BorderL"  Property="Opacity" Value="1"/>
+							<Setter TargetName="BorderR"  Property="Opacity" Value="1"/>
+
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="BorderL"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="BorderR"  Property="Opacity" Value="0.5"/>
+
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcTextBoxReadOnly" TargetType="TextBox">
+		<Setter Property="IsReadOnly" Value="True"/>
+		<Setter Property="IsReadOnlyCaretVisible" Value="False"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid Grid.Column="0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<Border x:Name="Border1" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" x:Name="PART_ContentHost"  Style="{StaticResource EmcInputTextBoxBase}"/>
+
+							<Grid Grid.Column="2">
+
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Border x:Name="Border2" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+						</Grid>
+
+						<Rectangle x:Name="Rectangle" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border1"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border1"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcTextBoxCenterAlign" TargetType="TextBox">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid Grid.Column="0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<Border x:Name="Border1" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" x:Name="PART_ContentHost"  Style="{StaticResource EmcInputTextBoxBase}"/>
+
+							<Grid Grid.Column="2">
+
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Border x:Name="Border2" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+						</Grid>
+
+						<Rectangle x:Name="Rectangle" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border1"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border1"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcPasswordBox" TargetType="PasswordBox">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type PasswordBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid Grid.Column="0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<Border x:Name="Border1" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" Style="{StaticResource EmcInputTextBoxBase}" x:Name="PART_ContentHost"/>
+
+							<Grid Grid.Column="2">
+
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Border x:Name="Border2" Grid.Row="1" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+						</Grid>
+
+						<Rectangle x:Name="Rectangle" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border1"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border1"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Border2"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcComboBox" TargetType="TextBox">
+		<Setter Property="IsReadOnly" Value="True"/>
+		<Setter Property="IsReadOnlyCaretVisible" Value="False"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="AllowDrop" Value="False"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+
+							<Grid Grid.Column="0" Grid.Row="1">
+								<Border x:Name="Border" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource EmcInputTextBoxBase}" x:Name="PART_ContentHost"/>
+
+							<Grid Grid.Column="2" Grid.Row="1">
+								<Canvas Width="{StaticResource EmcInputControlHeightBorder}" Height="{StaticResource EmcInputControlHeightBorder}">
+									<ContentControl>
+										<Polygon x:Name="Polygon" Points="10,0 10,10, 0,10" Stretch="Uniform" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+									</ContentControl>
+								</Canvas>
+							</Grid>
+
+							<Rectangle x:Name="Rectangle" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+						</Grid>
+
+
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Polygon"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Polygon"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcComboBoxCenterAlign" TargetType="TextBox">
+		<Setter Property="IsReadOnly" Value="True"/>
+		<Setter Property="IsReadOnlyCaretVisible" Value="False"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="AllowDrop" Value="False"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcTextForeground}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<StackPanel Orientation="Vertical">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+
+							<Grid Grid.Column="0" Grid.Row="1">
+								<Border x:Name="Border" Width="{StaticResource EmcInputControlThinckBorder}" Height="{StaticResource EmcInputControlHeightBorder}" Background="{DynamicResource EmcInputControlColorBorder}"/>
+							</Grid>
+
+							<ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource EmcInputTextBoxBase}" x:Name="PART_ContentHost"/>
+
+							<Grid Grid.Column="2" Grid.Row="1">
+								<Canvas Width="{StaticResource EmcInputControlHeightBorder}" Height="{StaticResource EmcInputControlHeightBorder}">
+									<ContentControl>
+										<Polygon x:Name="Polygon" Points="10,0 10,10, 0,10" Stretch="Uniform" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+									</ContentControl>
+								</Canvas>
+							</Grid>
+
+							<Rectangle x:Name="Rectangle" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Height="{StaticResource EmcInputControlThinckBorder}" StrokeThickness="0" Fill="{DynamicResource EmcInputControlColorBorder}"/>
+						</Grid>
+					</StackPanel>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter TargetName="Border"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Polygon"  Property="Opacity" Value="1"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="1"/>
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Border"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Polygon"  Property="Opacity" Value="0.5"/>
+							<Setter TargetName="Rectangle"  Property="Opacity" Value="0.5"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcCheckBox" TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="Height" Value="30" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource MyFocusVisualStyte}"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcInputControlColorBorder}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type CheckBox}">
+					<BulletDecorator>
+						<BulletDecorator.Bullet>
+							<Grid Height="{TemplateBinding Height}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Height, UpdateSourceTrigger=PropertyChanged}"
+							  MinHeight="30" MinWidth="30" ShowGridLines="False">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="4*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="4*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+								</Grid.RowDefinitions>
+
+								<Border Name="MainBorder"
+										Grid.ColumnSpan="7" Grid.RowSpan="7"
+										BorderThickness="1"
+										Background="Transparent" />
+
+								<Border Name="InnerBorder"
+										Grid.Column="0" Grid.ColumnSpan="5"
+										Grid.Row="2" Grid.RowSpan="5"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource EmcColorBorder}" />
+
+								<Path Name="InnerPath"
+									  Grid.Column="0" Grid.ColumnSpan="5"
+									  Grid.Row="2" Grid.RowSpan="5"
+									  Data="M31,5 L19.5,5 19.5,19.5 34.5,19.5 34.5,11.75"
+									  Stretch="Fill" Stroke="{DynamicResource EmcColorBorder}"/>
+
+								<Path Name="CheckMark"
+									  Grid.Column="1" Grid.ColumnSpan="5"
+									  Grid.Row="1" Grid.RowSpan="5"
+									  Opacity="0"
+									  Data="M9.07743946676476E-09,4.31805768640244L4.68740335877841,8.86361158398516C4.68740335877841,8.86361158398516,16.3281249985376,-2.42451336648723,16.3281249985376,-2.42451336648723L14.0622100581796,-4.77304938341948 4.68740335877846,4.31805791992662 2.22656251699567,1.93164208562579z"
+									  Fill="{TemplateBinding Foreground}"
+									  Stretch="Fill"
+									  Stroke="{TemplateBinding Foreground}"/>
+
+								<Path Name="InderminateMark"
+									  Grid.Column="2"
+									  Grid.Row="4"
+									  Data="M0,4 L1,5 5,1 4,0"
+									  Opacity="0"
+									  Stretch="Fill"
+									  StrokeThickness="0"
+									  Fill="{DynamicResource EmcColorBorder}"/>
+							</Grid>
+						</BulletDecorator.Bullet>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CheckStates">
+								<VisualState x:Name="Checked">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="CheckMark" Duration="0:0:0" To="1" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Unchecked" >
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="CheckMark" Duration="0:0:0" To="0" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Indeterminate">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="InderminateMark" Duration="0:0:0" To="1" />
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<ContentPresenter Margin="0,0,0,0"
+										  VerticalAlignment="Center"
+										  HorizontalAlignment="Left"
+										  RecognizesAccessKey="True" />
+					</BulletDecorator>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Setter TargetName="InnerBorder" Property="Visibility" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="MainBorder" Property="Background" Value="Transparent" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="CheckMark" Property="Fill" Value="{DynamicResource EmcEnableFalseColor}" />
+							<Setter TargetName="CheckMark" Property="Stroke" Value="{DynamicResource EmcEnableFalseColor}" />
+							<Setter TargetName="InnerPath" Property="Stroke" Value="{DynamicResource EmcEnableFalseColor}" />
+							<Setter TargetName="InderminateMark" Property="Fill" Value="{DynamicResource EmcEnableFalseColor}" />
+							<Setter TargetName="InnerBorder" Property="BorderBrush" Value="{DynamicResource EmcEnableFalseColor}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcCheckBoxCenter" TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="Height" Value="30" />
+		<Setter Property="Margin" Value="5,0,0,0" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource MyFocusVisualStyte}"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcInputControlColorBorder}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type CheckBox}">
+					<BulletDecorator>
+						<BulletDecorator.Bullet>
+							<Grid Height="{TemplateBinding Height}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Height, UpdateSourceTrigger=PropertyChanged}"
+							  MinHeight="30" MinWidth="30" ShowGridLines="False">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="4*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="1*" />
+
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="4*" />
+									<RowDefinition Height="1*" />
+									<RowDefinition Height="1*" />
+								</Grid.RowDefinitions>
+
+								<Border Name="MainBorder"
+										Grid.ColumnSpan="7" Grid.RowSpan="7"
+										BorderThickness="1"
+										Background="Transparent" />
+
+								<Border Name="InnerBorder"
+										Grid.Column="0" Grid.ColumnSpan="5"
+										Grid.Row="2" Grid.RowSpan="5"
+										BorderThickness="1"
+										BorderBrush="{DynamicResource EmcColorBorder}" />
+
+								<Path Name="InnerPath"
+									  Grid.Column="0" Grid.ColumnSpan="5"
+									  Grid.Row="2" Grid.RowSpan="5"
+									  Data="M31,5 L19.5,5 19.5,19.5 34.5,19.5 34.5,11.75"
+									  Stretch="Fill" Stroke="{DynamicResource EmcColorBorder}"/>
+
+								<Path Name="CheckMark"
+									  Grid.Column="1" Grid.ColumnSpan="5"
+									  Grid.Row="1" Grid.RowSpan="5"
+									  Opacity="0"
+									  Data="M9.07743946676476E-09,4.31805768640244L4.68740335877841,8.86361158398516C4.68740335877841,8.86361158398516,16.3281249985376,-2.42451336648723,16.3281249985376,-2.42451336648723L14.0622100581796,-4.77304938341948 4.68740335877846,4.31805791992662 2.22656251699567,1.93164208562579z"
+									  Fill="{TemplateBinding Foreground}"
+									  Stretch="Fill"
+									  Stroke="{TemplateBinding Foreground}"/>
+
+								<Path Name="InderminateMark"
+									  Grid.Column="2"
+									  Grid.Row="4"
+									  Data="M0,4 L1,5 5,1 4,0"
+									  Opacity="0"
+									  Stretch="Fill"
+									  StrokeThickness="0"
+									  Fill="{DynamicResource EmcColorBorder}"/>
+							</Grid>
+						</BulletDecorator.Bullet>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CheckStates">
+								<VisualState x:Name="Checked">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="CheckMark" Duration="0:0:0" To="1" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Unchecked" >
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="CheckMark" Duration="0:0:0" To="0" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Indeterminate">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+											 Storyboard.TargetName="InderminateMark" Duration="0:0:0" To="1" />
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<ContentPresenter Margin="0,0,0,0"
+										  VerticalAlignment="Center"
+										  HorizontalAlignment="Left"
+										  RecognizesAccessKey="True" />
+					</BulletDecorator>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Setter TargetName="InnerBorder" Property="Visibility" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="MainBorder" Property="Background" Value="Transparent" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="CheckMark" Property="Fill" Value="#cccccc" />
+							<Setter TargetName="CheckMark" Property="Stroke" Value="#cccccc" />
+							<Setter TargetName="InnerPath" Property="Stroke" Value="#cccccc" />
+							<Setter TargetName="InderminateMark" Property="Fill" Value="#cccccc" />
+							<Setter TargetName="InnerBorder" Property="BorderBrush" Value="#cccccc" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcCheckBoxSlider" TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="IsThreeState" Value="False"/>
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource MyFocusVisualStyte}"/>
+		<Setter Property="Foreground" Value="{DynamicResource EmcInputControlColorBorder}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type CheckBox}">
+					<BulletDecorator>
+						<BulletDecorator.Bullet>
+							<Grid>
+								<Border Name="SliderOff">
+									<Viewbox>
+										<Canvas Width="60" Height="28">
+											<Path Fill="#FF808080">
+												<Path.Data>
+													<PathGeometry Figures="M 46 28 H 14 C 6.28 28 0 21.72 0 14 0 6.28 6.28 0 14 0 h 32 c 7.72 0 14 6.28 14 14 0 7.72 -6.28 14 -14 14 z M 14 4 C 8.486 4 4 8.486 4 14 4 19.514 8.486 24 14 24 19.514 24 24 19.514 24 14 24 8.486 19.514 4 14 4 Z" FillRule="NonZero"/>
+												</Path.Data>
+											</Path>
+
+											<Path Fill="#FFFFFFFF" StrokeThickness="0">
+												<Path.Data>
+													<PathGeometry Figures="M 12.573588 23.840112 C 8.6468396 23.240439 5.4234302 20.351481 4.3538913 16.473267 c -0.3134866 -1.136722 -0.3134866 -3.806198 0 -4.94292 0.8943819 -3.2430835 3.3701472 -5.899281 6.4573307 -6.9279366 2.582477 -0.8604866 5.106485 -0.6939658 7.541265 0.4975329 3.487236 1.7065348 5.529661 4.9945107 5.529661 8.9018637 0 3.896198 -2.067389 7.221742 -5.529661 8.894858 -0.629237 0.304074 -1.51589 0.642574 -1.970339 0.752223 -1.086822 0.262227 -2.785231 0.347503 -3.80856 0.191224 z" FillRule="NonZero"/>
+												</Path.Data>
+											</Path>
+										</Canvas>
+									</Viewbox>
+								</Border>
+
+
+								<Border Name="SliderOn">
+									<Viewbox>
+										<Canvas Width="60" Height="28">
+											<Path Fill="#FF008000">
+												<Path.Data>
+													<PathGeometry Figures="M 14 28 H 46 C 53.72 28 60 21.72 60 14 60 6.28 53.72 0 46 0 H 14 C 6.28 0 0 6.28 0 14 0 21.72 6.28 28 14 28 Z M 46 4 C 51.514 4 56 8.486 56 14 56 19.514 51.514 24 46 24 40.486 24 36 19.514 36 14 36 8.486 40.486 4 46 4 Z" FillRule="NonZero"/>
+												</Path.Data>
+											</Path>
+
+											<Path Fill="#FFFFFFFF" StrokeThickness="0">
+												<Path.Data>
+													<PathGeometry Figures="m 44.876051 23.926469 c -4.462046 -0.55686 -7.963181 -3.895217 -8.718055 -8.312725 -0.169656 -0.992828 -0.137742 -2.715461 0.06754 -3.645351 0.577877 -2.6177284 2.070138 -4.8133918 4.267673 -6.2793109 3.419175 -2.2808446 7.89561 -2.2081223 11.293188 0.1834643 0.715209 0.5034419 1.845436 1.6336691 2.348878 2.3488775 1.754761 2.4928801 2.288197 5.6343261 1.448672 8.5313501 -0.902261 3.113515 -3.263248 5.605638 -6.318011 6.668932 -1.091236 0.379834 -1.731213 0.488147 -3.023356 0.511685 -0.629237 0.01146 -1.244174 0.0083 -1.366525 -0.0069 z" FillRule="NonZero"/>
+												</Path.Data>
+											</Path>
+										</Canvas>
+									</Viewbox>
+
+								</Border>
+
+
+
+
+							</Grid>
+						</BulletDecorator.Bullet>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CheckStates">
+								<VisualState x:Name="Checked">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SliderOn" Duration="0:0:0" To="1" />
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SliderOff" Duration="0:0:0" To="0" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Unchecked" >
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SliderOn" Duration="0:0:0" To="0" />
+										<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SliderOff" Duration="0:0:0" To="1" />
+									</Storyboard>
+								</VisualState>
+
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<ContentPresenter Margin="0,0,0,0"
+										  VerticalAlignment="Center"
+										  HorizontalAlignment="Left"
+										  RecognizesAccessKey="True" />
+					</BulletDecorator>
+
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcRadioButton" TargetType="{x:Type RadioButton}" >
+		<Setter Property="Height" Value="30" />
+		<Setter Property="Foreground" Value="{DynamicResource EmcInputControlColorBorder}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RadioButton}">
+					<BulletDecorator>
+						<BulletDecorator.Bullet>
+							<Grid Height="{TemplateBinding Height}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Height, UpdateSourceTrigger=PropertyChanged}">
+								<!--The two borders-->
+								<Border Name="RadioOuter">
+									<Viewbox>
+										<Canvas Name="svg201" Width="150" Height="150">
+											<Canvas.RenderTransform>
+												<TranslateTransform X="0" Y="0"/>
+											</Canvas.RenderTransform>
+											<Canvas.Resources/>
+
+											<Canvas Name="layer1">
+												<Ellipse Canvas.Left="0" Canvas.Top="0" Width="150" Height="150" Name="OutEllipe" Fill="{DynamicResource EmcColorBorder}" StrokeThickness="0.263157"/>
+												<Ellipse Canvas.Left="5" Canvas.Top="5" Width="140" Height="140" Fill="{DynamicResource EmcBackground}" StrokeThickness="0.59152"/>
+											</Canvas>
+										</Canvas>
+									</Viewbox>
+								</Border>
+
+								<Border Name="RadioMark">
+									<Viewbox>
+										<Canvas Width="150" Height="150">
+											<Canvas.RenderTransform>
+												<TranslateTransform X="0" Y="0"/>
+											</Canvas.RenderTransform>
+											<Canvas.Resources/>
+											<Canvas>
+												<Ellipse Canvas.Left="25" Canvas.Top="25" Width="100" Height="100" Name="InEllipe" Fill="{TemplateBinding Foreground}" StrokeThickness="0.263157"/>
+											</Canvas>
+										</Canvas>
+									</Viewbox>
+								</Border>
+
+								<!--<Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="2" />
+                                <Border CornerRadius="0" Margin="4" Name="RadioMark" Background="#FFADADAD" Visibility="Hidden" />-->
+							</Grid>
+						</BulletDecorator.Bullet>
+
+					</BulletDecorator>
+					<!--If item is checked, trigger the visibility of the mark-->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="true">
+							<!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+							<Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+							<!--<Setter TargetName="RadioOuter" Property="BorderBrush" Value="#FFADADAD" />-->
+						</Trigger>
+
+						<Trigger Property="IsChecked" Value="False">
+							<!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+							<Setter TargetName="RadioMark" Property="Visibility" Value="Collapsed"/>
+							<!--<Setter TargetName="RadioOuter" Property="BorderBrush" Value="#FFADADAD" />-->
+						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="OutEllipe" Property="Fill" Value="{DynamicResource EmcEnableFalseColor}" />
+							<Setter TargetName="InEllipe" Property="Fill" Value="{DynamicResource EmcEnableFalseColor}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="EmcListBoxItem" TargetType="{x:Type ListBoxItem}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBoxItem">
+					<Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+							Padding="{TemplateBinding Control.Padding}"
+							BorderBrush="{TemplateBinding Border.BorderBrush}"
+							Background="{TemplateBinding Panel.Background}"
+							Name="Bd"
+							SnapsToDevicePixels="True">
+						<ContentPresenter Content="{TemplateBinding ContentControl.Content}"
+										  ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+										  ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+										  HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+										  SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="UIElement.IsMouseOver" Value="True">
+							<Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
+							<Setter Property="Border.BorderBrush" TargetName="Bd" Value="Transparent">
+							</Setter>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcToolbar" TargetType="{x:Type ToolBar}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ToolBar">
+					<Border SnapsToDevicePixels="True" BorderThickness="0">
+						<StackPanel Orientation="Horizontal" IsItemsHost="True" Background="{DynamicResource EmcToolbarBackground}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="EmcInputControlWrapper" TargetType="StackPanel">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+	</Style>
+
+
+	<Style x:Key="EmcInputControlHeader" TargetType="TextBlock">
+		<Setter Property="Visibility" Value="Collapsed"/>
+	</Style>
+
+
+	<Style x:Key="EmcInputControlStckPnl" TargetType="StackPanel">
+		<Setter Property="Orientation" Value="Horizontal"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="Margin" Value="{StaticResource EmcRowMargin}"/>
+	</Style>
+
+
+
+</Styles>

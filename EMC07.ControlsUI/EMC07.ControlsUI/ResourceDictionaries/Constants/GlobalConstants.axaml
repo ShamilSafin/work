@@ -1,0 +1,83 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:d="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:system="clr-namespace:System"
+                    xmlns:emc07="clr-namespace:EMC07">
+
+		<!--*******************************-->
+		<!--*    Размеры MainWindow   -->
+		<!--*******************************-->
+
+		<system:Double      x:Key="EmcMainWindowWidth">800</system:Double>
+		<system:Double      x:Key="EmcMainWindowHeight">600</system:Double>
+		<system:Double      x:Key="EmcStatusBarHeight">20</system:Double>
+		<system:Double      x:Key="EmcStatusBarFontSize">15</system:Double>
+		<system:Double      x:Key="EmcToolBarHeight">44</system:Double>
+		<system:Double      x:Key="EmcParamNameFieldWidth">210</system:Double>
+
+
+		<!--*******************************-->
+		<!--*         Размеры Page         -->
+		<!--*******************************-->
+		<system:Double      x:Key="EmcPageMinWidth">800</system:Double>
+		<system:Double      x:Key="EmcPageMinHeight">600</system:Double>
+
+		<!--************************************-->
+		<!--*         Размеры PopupPage         -->
+		<!--************************************-->
+		<system:Double      x:Key="EmcPopupPageWidth">700</system:Double>
+		<system:Double      x:Key="EmcPopupPageHeight">500</system:Double>
+
+
+		<!--*******************************-->
+		<!--*      Style dimensions	 	  *-->
+		<!--*******************************-->
+
+		<system:Double  x:Key="EmcInputControlThinckBorder">2</system:Double>
+		<system:Double  x:Key="EmcInputControlHeightBorder">10</system:Double>
+		<system:Double  x:Key="EmcInputControlFontSize">17</system:Double>
+		<system:Double  x:Key="EmcButtonHeight">45</system:Double>
+		<system:Double  x:Key="EmcButtonMenu2LineFontSize">18</system:Double>
+		<system:Double  x:Key="EmcButtonSaveOrBackWidth">150</system:Double>
+		<system:Double  x:Key="EmcButtonIconSize">27</system:Double>
+		<!--Размер шрифта для кнопки в меню для двухстрочного текста-->
+
+
+		<BorderGapMaskConverter                        x:Key="BorderGapMaskConverter"/>
+
+		<!--*******************************-->
+		<!--*            Other            *-->
+		<!--*******************************-->
+
+		<system:Double      x:Key="EmcFontSizeSmall">10</system:Double>
+		<system:Double      x:Key="EmcFontSizeSmallMedium">12</system:Double>
+		<system:Double      x:Key="EmcFontSizeMedium">14</system:Double>
+		<system:Double      x:Key="EmcFontSizeLarge">18</system:Double>
+
+		<FontFamily         x:Key="EmcJournalFont">Arial Narrow</FontFamily>
+
+		<system:Double      x:Key="EmcFontSizeTitle">16</system:Double>
+
+
+		<system:Boolean     x:Key="ShowTS">True</system:Boolean>
+		<system:Boolean     x:Key="GridLines">False</system:Boolean>
+		<Thickness          x:Key="BaseMarginPage" Left="2" Right="2" Top="2" Bottom="2"/>
+		<Thickness          x:Key="EmcRowMargin" Left="0" Right="0" Top="3" Bottom="2" />
+		<Thickness          x:Key="EmcRowMargin2" Left="1" Right="1" Top="3" Bottom="3" />
+		<Thickness          x:Key="EmcRowMarginSize2" Left="0" Right="0" Top="2" Bottom="2" />
+		<Thickness          x:Key="EmcRowMarginMin" Left="0" Right="0" Top="1" Bottom="1" />
+		<Thickness          x:Key="EmcCaptionRightMargin" Left="0" Right="5" Top="0" Bottom="0" />
+		<Thickness          x:Key="EmcHeaderListMargin" Left="0" Right="45" Top="0" Bottom="0" />
+
+		<Thickness          x:Key="EmcMarginTitle" Left="10" Right="10" Top="0" Bottom="0" />
+
+		<system:Double      x:Key="EmcButtonNavigateWidth">65</system:Double>
+		<system:Double      x:Key="EmcTabItemHeight">40</system:Double>
+		<system:Double      x:Key="EmcTabItemHeightMid">30</system:Double>
+		<system:Double      x:Key="EmcRowWithButtonHeight">35</system:Double>
+
+		<system:Double      x:Key="EmcMinWidthPopupWindow">400</system:Double>
+
+
+	
+</ResourceDictionary>
