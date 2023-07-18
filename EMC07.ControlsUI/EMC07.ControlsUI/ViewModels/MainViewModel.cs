@@ -83,8 +83,7 @@ namespace EMC07.ControlsUI.ViewModel
         {
             if (_uiVal != _NumField)
             {
-                double temp;
-                var valid = double.TryParse(_uiVal, out temp);
+                var valid = double.TryParse(_uiVal, out double temp);
 
                 if (valid)
                 {
@@ -101,16 +100,16 @@ namespace EMC07.ControlsUI.ViewModel
 
         #region Команда закрытия
         private DelegateCommand _commandClose;
-        public DelegateCommand CommandClose => _commandClose ?? (_commandClose = new DelegateCommand(async (window) => await Close(window)));
+        public DelegateCommand CommandClose => _commandClose ??= new DelegateCommand(async (window) => await Close(window));
 
         private async Task Close(object arg)
         {
-            if (arg != null && arg is Window)
+            if (arg != null && arg is Window window)
             {
                 if (await Utl.YesNo("Закрыть программу?"))
                 {
                     timer?.Stop();
-                    ((Window)arg).Close();
+                    window.Close();
                 }
             }
         }

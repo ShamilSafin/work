@@ -1,11 +1,136 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<Window x:Class="EMC07.ControlsUI.View.MainWindow"
+		xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:EMC07.ControlsUI.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="EMC07.ControlsUI.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="EMC07.ControlsUI">
-        <views:MainView />
+        xmlns:sys="clr-namespace:System"
+        xmlns:local="clr-namespace:EMC07.ControlsUI"
+        xmlns:localDC="clr-namespace:EMC07.ControlsUI.ViewModel"
+		xmlns:avaloniaCommand="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+		
+        Width="{StaticResource EmcMainWindowWidth}"
+        Height="{StaticResource EmcMainWindowHeight}"
+        AllowsTransparency="False"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode ="NoResize">
+
+	<Window.DataContext>
+		<localDC:MainViewModel/>
+	</Window.DataContext>
+
+	<Window.Resources>
+		<Thickness x:Key="MarginInnerLR" Left="1" Right="1" Top="0" Bottom="0"/>
+
+		<Thickness x:Key="MarginInnerL" Left="1" Right="0" Top="0" Bottom="0"/>
+
+		<sys:Double x:Key="NameWidth">130</sys:Double>
+		<sys:Double x:Key="InputWidth">120</sys:Double>
+
+		<Style x:Key="RowStckPnl" TargetType="StackPanel">
+			<Setter Property="Orientation" Value="Horizontal"/>
+			<Setter Property="Margin" Value="5"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+		</Style>
+
+		<Style x:Key="NameField" TargetType="TextBlock">
+			<Setter Property="Width" Value="{StaticResource NameWidth}"/>
+			<Setter Property="Foreground" Value="{StaticResource EmcTextForeground}"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="TextAlignment" Value="Right"/>
+			<Setter Property="Margin" Value="{StaticResource EmcCaptionRightMargin}"/>
+		</Style>
+
+		<Style x:Key="InputText" BasedOn="{StaticResource EmcTextBox}" TargetType="TextBox">
+			<Setter Property="Width" Value="{StaticResource InputWidth}"/>
+			<Setter Property="TextAlignment" Value="Left"/>
+			<Setter Property="local:KeyboardTouchScreen.ControlEnable" Value="{StaticResource ShowTS}"/>
+		</Style>
+
+		<Style x:Key="InputNum" BasedOn="{StaticResource EmcTextBox}" TargetType="TextBox">
+			<Setter Property="Width" Value="{StaticResource InputWidth}"/>
+			<Setter Property="TextAlignment" Value="Left"/>
+			<Setter Property="local:NumpadTouchScreen.ControlEnable" Value="{StaticResource ShowTS}"/>
+		</Style>
+	</Window.Resources>
+
+	<Grid UseLayoutRounding="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="{Binding Source={StaticResource EmcStatusBarHeight}}"/>
+			<RowDefinition Height="{Binding Source={StaticResource EmcToolBarHeight}}"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Background="{DynamicResource EmcStatusBackground}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource EmcStatusForeground}"
+                       FontSize="{StaticResource EmcStatusBarFontSize}"
+                       Text="{Binding Title}"/>
+			</StackPanel>
+
+			<StackPanel Grid.Column="1" Orientation="Horizontal">
+				<!--Текущая ДАТА-->
+				<Border BorderBrush="{DynamicResource EmcStatusForeground}" BorderThickness="1, 0, 0, 0"/>
+				<TextBlock Margin="{StaticResource MarginInnerLR}"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource EmcStatusForeground}"
+                           FontSize="{StaticResource EmcStatusBarFontSize}"
+                           Text="{Binding CurDate}"/>
+
+				<!--Текущее ВРЕМЯ -->
+				<Border BorderBrush="{DynamicResource EmcStatusForeground}" BorderThickness="1, 0, 0, 0"/>
+				<TextBlock VerticalAlignment="Center"
+                           Margin="{StaticResource MarginInnerLR}"
+                           Foreground="{DynamicResource EmcStatusForeground}"
+                           FontSize="{StaticResource EmcStatusBarFontSize}"
+                           Text="{Binding CurTime}"/>
+			</StackPanel>
+		</Grid>
+
+		<Border Grid.Row="1" Margin="0" BorderThickness="0,0,0,1" BorderBrush="{DynamicResource EmcColorBorder}" Background="{DynamicResource EmcButtonMenuBackground}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Column="1"
+                        Style="{StaticResource EmcButtonClose}"
+                        BorderThickness="1,0,0,1"
+                        Height="{StaticResource EmcButtonHeight}"
+                        Width="{StaticResource EmcButtonHeight}"
+                        Command="{Binding CommandClose}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+			</Grid>
+		</Border>
+
+		<Grid Grid.Row="2" Background="{StaticResource EmcBackground}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
+				<StackPanel Style="{StaticResource RowStckPnl}">
+					<TextBlock Style="{StaticResource NameField}" Text="Текст"/>
+					<TextBox Style="{StaticResource InputText}"
+                             Text ="{Binding TextField, Mode=TwoWay}"/>
+				</StackPanel>
+
+				<StackPanel Style="{StaticResource RowStckPnl}">
+					<TextBlock Style="{StaticResource NameField}" Text="Число"/>
+					<TextBox Style="{StaticResource InputNum}" Tag="{Binding TagLeveldvmax}" Text="{Binding NumField, Mode=TwoWay}"/>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+
+	</Grid>
 </Window>

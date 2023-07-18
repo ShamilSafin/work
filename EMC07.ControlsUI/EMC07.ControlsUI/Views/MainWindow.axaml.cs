@@ -1,12 +1,13 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace EMC07.ControlsUI.Views;
-
-public partial class MainWindow : Window
+namespace EMC07.ControlsUI.Views
 {
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        AvaloniaXamlLoader.Load(this);
+        public MainWindow()
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
     }
 }

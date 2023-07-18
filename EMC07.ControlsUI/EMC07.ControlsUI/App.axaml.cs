@@ -7,7 +7,7 @@ namespace EMC07.ControlsUI
     {
         private void AppStart(object sender, ControlledApplicationLifetimeStartupEventArgs e)
         {
-            View.MainView mainview = new();
+            Views.MainWindow mainview = new();
             mainview.Show();
         }
     }

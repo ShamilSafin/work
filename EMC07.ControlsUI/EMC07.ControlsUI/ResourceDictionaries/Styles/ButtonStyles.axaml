@@ -62,7 +62,7 @@
 
 
 		<Style x:Key="EmcButtonBack" BasedOn="{StaticResource EmcButtonBase}" TargetType="{x:Type Button}">
-			<Setter Property="Command" Value="{Binding CommandGoBack}"/>
+			<Setter Property="C" Value="{Binding CommandGoBack}"/>
 
 			<Setter Property="ContentTemplate">
 				<Setter.Value>
@@ -1181,9 +1181,27 @@
 				</Setter.Value>
 			</Setter>
 
+			<Button Background="Orange">
+				<Button.Triggers>
+					<Trigger Property="IsLoaded" Value="True">
+						<Trigger.EnterActions>
+							<BeginStoryboard>
+								<Storyboard RepeatBehavior="Forever">
+									<ColorAnimation Duration="0:0:0.5" To="Yellow" FillBehavior="Stop"
+													Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"/>
+									<ColorAnimation Duration="0:0:0.5" To="Orange"
+													Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+													BeginTime="0:0:0.5"/>
+								</Storyboard>
+							</BeginStoryboard>
+						</Trigger.EnterActions>
+					</Trigger>
+				</Button.Triggers>
+			</Button>
+			<!--
 			<Style.Triggers>
-				<EventTrigger RoutedEvent="Loaded">
-					<EventTrigger.Actions>
+				<Trigger Property="IsLoaded" Value="True">
+					<Trigger.Actions>
 						<BeginStoryboard>
 							<Storyboard RepeatBehavior="Forever">
 								<ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
@@ -1194,10 +1212,12 @@
 												BeginTime="0:0:0.5" Duration="0:0:0.5"/>
 							</Storyboard>
 						</BeginStoryboard>
-					</EventTrigger.Actions>
-				</EventTrigger>
+					</Trigger.Actions>
+				</Trigger>
 			</Style.Triggers>
+			-->
 		</Style>
+		
 
 		<Style x:Key="EmcButtonAdminMode" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="Transparent"/>

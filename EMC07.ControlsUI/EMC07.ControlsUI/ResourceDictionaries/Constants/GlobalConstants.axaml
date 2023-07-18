@@ -43,7 +43,7 @@
 		<!--Размер шрифта для кнопки в меню для двухстрочного текста-->
 
 
-		<BorderGapMaskConverter                        x:Key="BorderGapMaskConverter"/>
+	    <SomeOtherConverter     x:Key="BorderGapMaskConverter"/>
 
 		<!--*******************************-->
 		<!--*            Other            *-->

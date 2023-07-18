@@ -397,12 +397,12 @@
 		</Style>
 
 		<Style x:Key="EmcGroupBox"
-			TargetType="{x:Type GroupBox}">
+			TargetType="GroupBox">
 			<Setter Property="BorderBrush" Value="#D5DFE5" />
 			<Setter Property="BorderThickness" Value="1" />
 			<Setter Property="Template">
 				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type GroupBox}">
+					<ControlTemplate TargetType="GroupBox">
 						<Grid SnapsToDevicePixels="true">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="6" />
@@ -450,7 +450,7 @@
 		</Style>
 
 
-		<Style x:Key="EmcToolBar" TargetType="{x:Type ToolBar}">
+		<Style x:Key="EmcToolBar" TargetType="ToolBar">
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="ToolBar">

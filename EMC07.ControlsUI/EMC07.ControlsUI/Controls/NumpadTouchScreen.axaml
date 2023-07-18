@@ -1,5 +1,5 @@
 <Window x:Class="EMC07.ControlsUI.NumpadTouchScreen"
-        xmlns:avalonia="https://github.com/avaloniaui"
+        xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:EMC07.ControlsUI"
         WindowStyle="None"

@@ -12,9 +12,7 @@ using Avalonia.VisualTree;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.ReactiveUI;
 using EMC07.ControlsUI.Views;
-using System.Xml.Linq;
 
 namespace EMC07.ControlsUI
 {
