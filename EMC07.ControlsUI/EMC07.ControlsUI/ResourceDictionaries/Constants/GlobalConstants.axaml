@@ -2,9 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:d="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:system="clr-namespace:System"
-                    xmlns:emc07="clr-namespace:EMC07">
+                    xmlns:emc07="clr-namespace:EMC07"
+					xmlns:local="clr-namespace:EMC07.ControlsUI.Helpers">
 
-		<!--*******************************-->
+	<!--*******************************-->
 		<!--*    Размеры MainWindow   -->
 		<!--*******************************-->
 
@@ -43,7 +44,7 @@
 		<!--Размер шрифта для кнопки в меню для двухстрочного текста-->
 
 
-	    <SomeOtherConverter     x:Key="BorderGapMaskConverter"/>
+		<local:BorderGapConverter     x:Key="BorderGapMaskConverter"/>
 
 		<!--*******************************-->
 		<!--*            Other            *-->

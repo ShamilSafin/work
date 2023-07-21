@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Controls.ApplicationLifetimes;
 using EMC07.ControlsUI.Views;
+using EMC07.ControlsUI.CommandBinding;
+using System.Data.Common;
 
 namespace EMC07.ControlsUI
 {
@@ -46,9 +48,10 @@ namespace EMC07.ControlsUI
         public static ContentType ContentTp;
 
         #region AvaloniaProperty ControlEnableProperty
-        public static readonly AttachedProperty<bool> ControlEnableProperty =
-            AvaloniaProperty.RegisterAttached<NumpadTouchScreen, Control, bool>("ControlEnable", typeof(NumpadTouchScreen),
-                new DirectPropertyMetadata<bool>(default(bool), ControlEnablePropertyChanged));//??
+
+        public static readonly AvaloniaProperty<bool> ControlEnableProperty 
+            = AvaloniaProperty.RegisterAttached<NumpadTouchScreen, Control, bool>("ContentType",false);
+        //new DirectPropertyMetadata<bool>(default, null));//??
         /*
         public static readonly AvaloniaProperty ControlEnableProperty =
             AvaloniaProperty.RegisterAttached("ControlEnable", typeof(bool), typeof(NumpadTouchScreen),
@@ -56,7 +59,8 @@ namespace EMC07.ControlsUI
         */
         public static bool GetControlEnable(AvaloniaObject obj)
         {
-            return obj.GetValue(ControlEnableProperty);
+            // return obj.GetValue(ControlEnableProperty);
+            return true;
         }
 
         public static void SetControlEnable(AvaloniaObject obj, bool value)
@@ -76,8 +80,9 @@ namespace EMC07.ControlsUI
 
 
         #region DependencyProperty ContentProperty
-        public static readonly AvaloniaProperty ContentTypeProperty 
-            = AvaloniaProperty.RegisterAttached<NumpadTouchScreen, ContentType>("ContentType", typeof(NumpadTouchScreen), ContentType.RealNum, ContentTypePropertyChanged);
+        public static readonly AvaloniaProperty ContentTypeProperty
+            = AvaloniaProperty.RegisterAttached<NumpadTouchScreen, Control, ContentType>("ContentType", ContentType.RealNum,
+                false, BindingMode.Default);//,ContentTypePropertyChanged);
         public static ContentType GetContentType(AvaloniaObject obj)
         {
             return (ContentType)obj.GetValue(ContentTypeProperty);
@@ -184,9 +189,10 @@ namespace EMC07.ControlsUI
         {
             timerBeforeClose.Stop();
         }
-
-        private static void RunCommand(object sender, RoutedEventArgs e)
+        //Изменил приватность пока на время
+        public static async Task RunCommand(object sender)//, RoutedEventArgs e)
         {
+            var e = (RoutedEventArgs)sender;
             TouchScreenText = _TextBoxInternal.Text;
             var source = e.Source as Control;
             if (source.Name == "Cmd1")
@@ -382,13 +388,15 @@ namespace EMC07.ControlsUI
                         }
                     }
 
-                    CloseCommand(null, null);
+                    CloseCommand(null);
                 }
             }
         }
-        
-        private static async Task CloseCommand(object sender, RoutedEventArgs e)
+       
+
+        public static async Task CloseCommand(object sender)//, RoutedEventArgs e)
         {
+            var e = (RoutedEventArgs)sender;
             if (_InstanceObject != null)
             {
                 _InstanceObject.Close();
@@ -411,21 +419,18 @@ namespace EMC07.ControlsUI
             {
                 var w = new MainWindow();
                 Application.Current.Run(w);
-                // var w = Application.Current.RunWithMainWindow<MainWindow>;
-                AvaloniaObject scope = FocusManager.GetFocusScope(_TextBoxMain);
-                FocusManager.SetFocusedElement(scope, w);
-
+                //AvaloniaObject scope = FocusManager.GetFocusScope(_TextBoxMain);
+                //FocusManager.SetFocusedElement(scope, w);
             }
             else
             {
                 var w = root as AvaloniaObject;
                 if (w != null)
                 {
-                    w.SetValue(Avalonia.VisualTree.Visual.FocusableProperty, true);
+                   // w.SetValue(Avalonia.VisualTree.Visual.FocusableProperty, true);
                 }
-
-                AvaloniaObject scope = FocusManager.Scope(_TextBoxMain);
-                FocusManager.Focus(w, NavigationMethod.Unspecified, scope);
+                //AvaloniaObject scope = FocusManager.Scope(_TextBoxMain);
+                //FocusManager.Focus(w, NavigationMethod.Unspecified, scope);
             }
 
 
@@ -586,7 +591,7 @@ namespace EMC07.ControlsUI
 
         #region Объявление комманд RoutedUICommand
 
-        public static readonly RoutedEvent Cmd1Event = RoutedEvent.Register<NumpadTouchScreen, RoutedEventArgs>("Cmd1", RoutingStrategies.Bubble);
+        public static readonly RoutedEvent Cmd1 = RoutedEvent.Register<NumpadTouchScreen, RoutedEventArgs>("Cmd1", RoutingStrategies.Bubble);
         public static readonly RoutedEvent Cmd2 = RoutedEvent.Register<NumpadTouchScreen, RoutedEventArgs>("Cmd2", RoutingStrategies.Bubble);
         public static readonly RoutedEvent Cmd3 = RoutedEvent.Register<NumpadTouchScreen, RoutedEventArgs>("Cmd3", RoutingStrategies.Bubble);
         public static readonly RoutedEvent Cmd4 = RoutedEvent.Register<NumpadTouchScreen, RoutedEventArgs>("Cmd4", RoutingStrategies.Bubble);
@@ -610,42 +615,38 @@ namespace EMC07.ControlsUI
         #endregion
 
         #region реализация комманд SetCommandBinding
-
-        public event EventHandler<RoutedEventArgs> Cmd1
-        {
-            add => AddHandler(Cmd1Event, value);
-            remove => RemoveHandler(Cmd1Event, value);
-
-        }
-
         
         private static void SetCommandBinding()
         {
-            var Cb1 = new CommandBinding(Cmd1, RunCommand);
-     
-            var Cb2 = new CommandBinding(Cmd2, RunCommand);
-            var Cb3 = new CommandBinding(Cmd3, RunCommand);
-            var Cb4 = new CommandBinding(Cmd4, RunCommand);
-            var Cb5 = new CommandBinding(Cmd5, RunCommand);
-            var Cb6 = new CommandBinding(Cmd6, RunCommand);
-            var Cb7 = new CommandBinding(Cmd7, RunCommand);
-            var Cb8 = new CommandBinding(Cmd8, RunCommand);
-            var Cb9 = new CommandBinding(Cmd9, RunCommand);
-            var Cb0 = new CommandBinding(Cmd0, RunCommand);
-            var CbDecimalSeparator = new CommandBinding(CmdDecimalSeparator, RunCommand);
-            var CbEpsilon = new CommandBinding(CmdEpsilon, RunCommand);
-            var CbPlus = new CommandBinding(CmdPlus, RunCommand);
-            var CbMinus = new CommandBinding(CmdMinus, RunCommand);
-            var CbBackspace = new CommandBinding(CmdBackspace, RunCommand);
-            var CbCaretLeft = new CommandBinding(CmdCaretLeft, RunCommand);
-            var CbCaretRight = new CommandBinding(CmdCaretRight, RunCommand);
-            var CbEnter = new CommandBinding(CmdEnter, RunCommand);
-            var CbClose = new CommandBinding(CmdClose, CloseCommand);
+
+            var viewModel = new HelpCommandBinding();
+            var Cb1=viewModel.Cmd1.Subscribe(_ => { });
+            var Cb2 = viewModel.Cmd2.Subscribe(_ => { });
+            var Cb3 = viewModel.Cmd3.Subscribe(_ => { });
+            var Cb4 = viewModel.Cmd4.Subscribe(_ => { });
+            var Cb5 = viewModel.Cmd5.Subscribe(_ => { });
+            var Cb6 = viewModel.Cmd6.Subscribe(_ => { });
+            var Cb7 = viewModel.Cmd7.Subscribe(_ => { });
+            var Cb8 = viewModel.Cmd8.Subscribe(_ => { });
+            var Cb9 = viewModel.Cmd9.Subscribe(_ => { });
+            var Cb0 = viewModel.Cmd0.Subscribe(_ => { });
+            var CbDecimalSeparator = viewModel.CmdDecimalSeparator.Subscribe(_ => { });
+            var CbEpsilon = viewModel.CmdEpsilon.Subscribe(_ => { });
+            var CbPlus = viewModel.CmdPlus.Subscribe(_ => { });
+            var CbMinus = viewModel.CmdMinus.Subscribe(_ => { });
+            var CbBackspace = viewModel.CmdBackspace.Subscribe(_ => { });
+            var CbCaretLeft = viewModel.CmdCaretLeft.Subscribe(_ => { });
+            var CbCaretRight = viewModel.CmdCaretRight.Subscribe(_ => { });
+            var CbEnter = viewModel.CmdEnter.Subscribe(_ => { });
+            var CbClose = viewModel.CmdClose.Subscribe(_ => { });
 
 
-            
-            // CommandManager.RegisterClassCommandBinding(typeof(NumpadTouchScreen), Cb1);
-            RoutedEvent.Register(typeof(NumpadTouchScreen), Cb2);
+            CommandManager.RegisterClassCommandBinding(typeof(NumpadTouchScreen), new ClassCommandBinding(HelpCommandBinding.Cmd1, async (sender, args) =>
+            {
+                await NumpadTouchScreen.RunCommand(sender);
+            }));
+
+            InputElement.AddHandler(Cb1Command, NumpadTouchScreen.Cb1CommandHandler);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb3);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb4);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb5);
@@ -700,7 +701,7 @@ namespace EMC07.ControlsUI
 
                 if (!(row == 1 && col == 1))
                 {
-                    CloseCommand(null, null);
+                    CloseCommand(null);
                 }
             }
         }

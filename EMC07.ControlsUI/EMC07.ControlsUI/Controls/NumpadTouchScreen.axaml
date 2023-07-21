@@ -1,6 +1,7 @@
 <Window x:Class="EMC07.ControlsUI.NumpadTouchScreen"
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:avaloniaCommand="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
         xmlns:src="clr-namespace:EMC07.ControlsUI"
         WindowStyle="None"
         ShowInTaskbar="False"
@@ -65,13 +66,24 @@
 			<Setter Property="Margin" Value="0" />
 
 			<!--Исправить       -->
-			<Setter Property="PointerPressed">
+			<Button>
+				<Button.Template>
+					<ControlTemplate>
+						<Border PointerPressed="{Command MouseLeftButtonDownCommand}"
+								PointerReleased="MouseLeftButtonUp">
+							<!-- контент кнопки -->
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+			<!--<Setter Property="PointerPressed">
 				<Setter.Value>
 					<Command Command="{Binding MouseLeftButtonDown}" />
 				</Setter.Value>
-			</Setter>	
+			</Setter>
+			
 			<EventSetter Event="PointerReleased" Handler="MouseLeftButtonUp" />
-
+			-->
 			<Setter Property="ContentTemplate">
 				<Setter.Value>
 					<DataTemplate>

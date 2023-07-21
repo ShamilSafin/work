@@ -45,6 +45,7 @@
     <PackageReference Include="Dove.Avalonia.Controls.Extensions.ChineseInputSupoort" Version="2.0.0" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.32.0" />
+    <PackageReference Include="TruDan.Avalonia.ExtendedToolkit" Version="0.9.5.1" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
   </ItemGroup>
 </Project>
