@@ -1,22 +1,16 @@
 <Application x:Class="EMC07.ControlsUI.App"
 			 xmlns="https://github.com/avaloniaui"
-             xmlns:presentation="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:EMC07.ControlsUI"
-             Startup="AppStart">
+             xmlns:local="clr-namespace:EMC07.ControlsUI">
+            <!--Startup="AppStart"-->
 
-	<Application.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="ResourceDictionaries/Constants/GlobalConstants.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/Constants/Strings.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/LightTheme/LightTheme.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/Styles/OtherStyles.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/Styles/ListBoxStyles.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/Styles/ButtonStyles.axaml"/>
-				<ResourceDictionary Source="ResourceDictionaries/Styles/InputStyles.axaml"/>
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-
-	</Application.Resources>
+	<Application.Styles>
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Constants/GlobalConstants.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Constants/Strings.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/LightTheme/LightTheme.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Styles/OtherStyles.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Styles/ListBoxStyles.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Styles/ButtonStyles.axaml" />
+		<StyleInclude Source="avares://EMC07.ControlsUI/ResourceDictionaries/Styles/InputStyles.axaml" />
+	</Application.Styles>
 </Application>

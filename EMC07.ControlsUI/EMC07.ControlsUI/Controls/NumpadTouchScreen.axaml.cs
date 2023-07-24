@@ -15,6 +15,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using EMC07.ControlsUI.Views;
 using EMC07.ControlsUI.CommandBinding;
 using System.Data.Common;
+using ReactiveUI;
+using System.Windows.Input;
 
 namespace EMC07.ControlsUI
 {
@@ -52,11 +54,7 @@ namespace EMC07.ControlsUI
         public static readonly AvaloniaProperty<bool> ControlEnableProperty 
             = AvaloniaProperty.RegisterAttached<NumpadTouchScreen, Control, bool>("ContentType",false);
         //new DirectPropertyMetadata<bool>(default, null));//??
-        /*
-        public static readonly AvaloniaProperty ControlEnableProperty =
-            AvaloniaProperty.RegisterAttached("ControlEnable", typeof(bool), typeof(NumpadTouchScreen),
-                new UIPropertyMetadata(default(bool), ControlEnablePropertyChanged));
-        */
+        
         public static bool GetControlEnable(AvaloniaObject obj)
         {
             // return obj.GetValue(ControlEnableProperty);
@@ -102,7 +100,6 @@ namespace EMC07.ControlsUI
             var bindExp = s?.GetBindingExpression(NumpadTouchScreen.ContentTypeProperty);
             bindExp?.UpdateTarget();
              */            
-            //???
             var s = sender as TextBox;
             var propertyName = "ContentType";
             var propertyInfo = s.GetType().GetProperty(propertyName);
@@ -620,7 +617,7 @@ namespace EMC07.ControlsUI
         {
 
             var viewModel = new HelpCommandBinding();
-            var Cb1=viewModel.Cmd1.Subscribe(_ => { });
+            var Cb1 = viewModel.Cmd1.Subscribe(_ => { });
             var Cb2 = viewModel.Cmd2.Subscribe(_ => { });
             var Cb3 = viewModel.Cmd3.Subscribe(_ => { });
             var Cb4 = viewModel.Cmd4.Subscribe(_ => { });
@@ -641,12 +638,9 @@ namespace EMC07.ControlsUI
             var CbClose = viewModel.CmdClose.Subscribe(_ => { });
 
 
-            CommandManager.RegisterClassCommandBinding(typeof(NumpadTouchScreen), new ClassCommandBinding(HelpCommandBinding.Cmd1, async (sender, args) =>
-            {
-                await NumpadTouchScreen.RunCommand(sender);
-            }));
-
-            InputElement.AddHandler(Cb1Command, NumpadTouchScreen.Cb1CommandHandler);
+            /*
+            AvaloniaProperty.RegisterAttached<NumpadTouchScreen>("Cb1");
+            CommandManager.RegisterClassCommandBinding(typeof(NumpadTouchScreen), Cb2);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb3);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb4);
             RoutedEvent.Register(typeof(NumpadTouchScreen), Cb5);
@@ -664,7 +658,7 @@ namespace EMC07.ControlsUI
             RoutedEvent.Register(typeof(NumpadTouchScreen), CbCaretRight);
             RoutedEvent.Register(typeof(NumpadTouchScreen), CbEnter);
             RoutedEvent.Register(typeof(NumpadTouchScreen), CbClose);
-            
+            */
         }
 
         #endregion

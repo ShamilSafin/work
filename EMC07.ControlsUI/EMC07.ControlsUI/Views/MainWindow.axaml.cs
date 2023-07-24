@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
 namespace EMC07.ControlsUI.Views
 {
@@ -7,7 +6,7 @@ namespace EMC07.ControlsUI.Views
     {
         public MainWindow()
         {
-            AvaloniaXamlLoader.Load(this);
+            InitializeComponent();
         }
     }
 }

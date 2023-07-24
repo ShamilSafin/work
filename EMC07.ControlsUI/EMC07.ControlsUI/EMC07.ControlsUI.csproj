@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	<AvaloniaNameGeneratorIsEnabled>false</AvaloniaNameGeneratorIsEnabled>
   </PropertyGroup>
 
   
@@ -47,5 +48,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.32.0" />
     <PackageReference Include="TruDan.Avalonia.ExtendedToolkit" Version="0.9.5.1" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+	  
   </ItemGroup>
 </Project>

@@ -1,11 +1,10 @@
 <Window x:Class="EMC07.ControlsUI.NumpadTouchScreen"
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:avaloniaCommand="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
         xmlns:src="clr-namespace:EMC07.ControlsUI"
-        WindowStyle="None"
-        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
         Topmost="True"
+        ShowInTaskbar="False"
         Width="{StaticResource EmcMainWindowWidth}"
         AllowsTransparency="True"
         Background="#00000000">
@@ -66,11 +65,12 @@
 			<Setter Property="Margin" Value="0" />
 
 			<!--Исправить       -->
-			<Button>
+			<Button Command="{Binding MouseLeftButtonDownCommand}">
 				<Button.Template>
 					<ControlTemplate>
-						<Border PointerPressed="{Command MouseLeftButtonDownCommand}"
-								PointerReleased="MouseLeftButtonUp">
+						<Border
+							PointerPressed="{Binding MouseLeftButtonDownCommand.Execute}"
+							PointerReleased="{Binding MouseLeftButtonDownCommand.Execute}">
 							<!-- контент кнопки -->
 						</Border>
 					</ControlTemplate>
@@ -273,7 +273,7 @@
 
 	</Window.Resources>
 
-	<Grid Name="gridContent" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
+	<Grid x:Name="gridContent" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="Auto" />
@@ -301,7 +301,7 @@
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 
-				<Grid Name="HeaderPlace" Grid.Row="0" Margin="0,0,0,5">
+				<Grid x:Name="HeaderPlace" Grid.Row="0" Margin="0,0,0,5">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="Auto"/>
@@ -325,7 +325,7 @@
                             BorderThickness="0, 0, 0, 1"
                             Height="55" Width="55">
 
-						<Button Name="btnClose" Style="{StaticResource CloseKey}" Command="src:NumpadTouchScreen.CmdClose"/>
+						<Button x:Name="btnClose" Style="{StaticResource CloseKey}" Command="src:NumpadTouchScreen.CmdClose"/>
 					</Border>
 				</Grid>
 
@@ -357,7 +357,7 @@
 								</Grid.ColumnDefinitions>
 
 								<Border Grid.Column="0" BorderThickness="0">
-									<TextBox Name="TextBoxInternal"
+									<TextBox x:Name="TextBoxInternal"
                                                  Width="215"
                                                  VerticalContentAlignment="Center"
                                                  Background="{StaticResource Flat_BackgroundFieldValue}"
@@ -483,7 +483,7 @@
                                         Grid.Column="3"
                                         Grid.ColumnSpan="2"
                                                 Margin="5,0,0,0">
-											<Button Name="btnEnter"
+											<Button x:Name="btnEnter"
                                                     Command="src:NumpadTouchScreen.CmdEnter"
                                                     Style="{StaticResource EnterKey}" />
 										</Border>
